@@ -23,7 +23,6 @@ services:
     build:
       context: ./BE
     container_name: tomcat-backend
-    restart: always
     ports:
       - "8080:8080"
     depends_on:
@@ -40,9 +39,8 @@ services:
     build:
       context: ./FE
     container_name: apache-frontend
-    restart: always
     ports:
       - "80:80"
 
 volumes:
-  mysql_data:
+  mysql_data:                                                                                                    
