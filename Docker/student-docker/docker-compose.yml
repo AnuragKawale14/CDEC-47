@@ -8,6 +8,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: studentapp
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -23,6 +25,7 @@ services:
     build:
       context: ./BE
     container_name: tomcat-backend
+    restart: always
     ports:
       - "8080:8080"
     depends_on:
@@ -34,13 +37,24 @@ services:
       DB_USER: root
       DB_PASSWORD: 1234
       DB_NAME: studentapp
+    # Internal network so frontend can reach backend
+    networks:
+      - app-network
 
   frontend:
     build:
       context: ./FE
     container_name: apache-frontend
+    restart: always
     ports:
       - "80:80"
+    environment:
+      BACKEND_URL: http://backend:8080   # ✨ Important
+    networks:
+      - app-network
+
+networks:
+  app-network:
 
 volumes:
-  mysql_data:                                                                                                    
+  mysql_data:
