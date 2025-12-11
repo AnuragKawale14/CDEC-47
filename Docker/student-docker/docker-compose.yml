@@ -2,12 +2,14 @@ version: "3.8"
 
 services:
   mysql:
-    image: mysql:8.0
+    image: mysql:latest
     container_name: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: studentapp
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -20,29 +22,29 @@ services:
       retries: 5
 
   backend:
-    build:
-      context: ./BE
+    build: ./BE
     container_name: tomcat-backend
     restart: always
+    ports:
+      - "8080:8080"
     depends_on:
       mysql:
         condition: service_healthy
     environment:
       DB_HOST: mysql
       DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: 1234
+      DB_USER: user
+      DB_PASSWORD: user123
       DB_NAME: studentapp
-    ports:
-      - "8080:8080"
 
   frontend:
-    build:
-      context: ./FE
+    build: ./FE
     container_name: apache-frontend
+    restart: always
     ports:
       - "80:80"
 
 volumes:
   mysql_data:
+
 
