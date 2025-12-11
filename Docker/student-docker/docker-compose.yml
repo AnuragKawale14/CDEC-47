@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql
     restart: always
     environment:
@@ -14,7 +14,7 @@ services:
     ports:
       - "3306:3306"
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1234"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -23,8 +23,7 @@ services:
     build:
       context: ./BE
     container_name: tomcat-backend
-    ports:
-      - "8080:8080"
+    restart: always
     depends_on:
       mysql:
         condition: service_healthy
@@ -34,6 +33,8 @@ services:
       DB_USER: root
       DB_PASSWORD: 1234
       DB_NAME: studentapp
+    ports:
+      - "8080:8080"
 
   frontend:
     build:
@@ -43,4 +44,5 @@ services:
       - "80:80"
 
 volumes:
-  mysql_data:  
+  mysql_data:
+
