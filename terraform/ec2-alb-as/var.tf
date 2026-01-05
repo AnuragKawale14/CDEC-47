@@ -11,7 +11,7 @@ variable "key_pair" {
 }
 
 variable "subnet_id_1" {
-    default = "subnet-0ecce0deeb3ca246a"
+    default = "subnet-08741fa47e20ba313"
 }
 
 variable "subnet_id_2" {
