@@ -73,26 +73,17 @@ resource "aws_autoscaling_group" "asg_home" {
 resource "aws_autoscaling_policy" "asg_policy_home" {
   name                   = "asg_policy_home"
   autoscaling_group_name = aws_autoscaling_group.asg_home.name
-  policy_type            = "PredictiveScaling"
+  policy_type            = "TargetTrackingScaling"
 
-  predictive_scaling_configuration {
-    mode = "ForecastAndScale"   # or ForecastOnly
-
-    metric_specification {
-      target_value = 50
-
-      # LOAD METRIC (required)
-      predefined_load_metric_specification {
-        predefined_metric_type = "ASGTotalCPUUtilization"
-      }
-
-      # SCALING METRIC (THIS WAS MISSING)
-      predefined_scaling_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
-      }
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
+
+    target_value = 50
   }
 }
+
 
 
 
@@ -126,24 +117,17 @@ resource "aws_autoscaling_group" "asg_laptop" {
 resource "aws_autoscaling_policy" "asg_policy_laptop" {
   name                   = "asg_policy_laptop"
   autoscaling_group_name = aws_autoscaling_group.asg_laptop.name
-  policy_type            = "PredictiveScaling"
+  policy_type            = "TargetTrackingScaling"
 
-  predictive_scaling_configuration {
-    mode = "ForecastAndScale"
-
-    metric_specification {
-      target_value = 50
-
-      predefined_load_metric_specification {
-        predefined_metric_type = "ASGTotalCPUUtilization"
-      }
-
-      predefined_scaling_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
-      }
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
+
+    target_value = 50
   }
 }
+
 
 
 
@@ -177,22 +161,14 @@ resource "aws_autoscaling_group" "asg_mobile" {
 resource "aws_autoscaling_policy" "asg_policy_mobile" {
   name                   = "asg_policy_mobile"
   autoscaling_group_name = aws_autoscaling_group.asg_mobile.name
-  policy_type            = "PredictiveScaling"
+  policy_type            = "TargetTrackingScaling"
 
-  predictive_scaling_configuration {
-    mode = "ForecastAndScale"
-
-    metric_specification {
-      target_value = 50
-
-      predefined_load_metric_specification {
-        predefined_metric_type = "ASGTotalCPUUtilization"
-      }
-
-      predefined_scaling_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
-      }
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
+
+    target_value = 50
   }
 }
 
