@@ -1,5 +1,5 @@
 variable "image_id" {
-    default = "ami-05f071c65e32875a8"
+    default = "ami-00ca570c1b6d79f36"
 }
 
 variable "instance_type" {
@@ -7,17 +7,17 @@ variable "instance_type" {
 }
 
 variable "key_pair" {
-    default = "soheb-singa-key"
+    default = "mumbai-soheb"
 }
 
 variable "subnet_id_1" {
-    default = "subnet-013264671644490bb"
+    default = "subnet-0892ae69504afe630"
 }
 
 variable "subnet_id_2" {
-    default = "subnet-0f4c0ae3cf3c570a3"
+    default = "subnet-08dfb2d1c18ec688e"
 }
 
 variable "vpc_id" {
-    default = "vpc-0ea4df3125a10776f"
+    default = "vpc-0c784a7881cad61b7"
 }

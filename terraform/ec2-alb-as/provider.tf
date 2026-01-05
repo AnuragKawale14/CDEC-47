@@ -1,4 +1,4 @@
 provider "aws" {
-  region = "ap-southeast-1"  # Specify the AWS region
+  region = "ap-south-1"  # Specify the AWS region
 
 }
