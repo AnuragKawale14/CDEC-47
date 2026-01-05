@@ -12,13 +12,13 @@
 #/*--------*/ or ctrl+/ --all block comment
 
 provider "aws" {
-  region = "ap-southeast-2" # Specify the AWS region
+  region = "eu-north-1" # Specify the AWS region
 }
 
 resource "aws_instance" "my_instance" {
-  ami             = "ami-07ba57196a766fc6d"
-  instance_type   = "t2.micro"
-  key_name        = "root3.0-key-sydny"
+  ami             = "ami-0fa91bc90632c73c9"
+  instance_type   = "t3.micro"
+  key_name        = "Stockholmkey"
   security_groups = ["default"] # Ensure this security group exists
 
   tags = {
