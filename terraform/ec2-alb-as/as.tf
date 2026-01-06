@@ -57,38 +57,34 @@ resource "aws_autoscaling_group" "asg_home" {
   target_group_arns = [aws_lb_target_group.tg_home.arn]
 }
 
-# resource "aws_autoscaling_policy" "asg_policy_home" {
-#   autoscaling_group_name = aws_autoscaling_group.asg_home.name
-#   name                   = "asg_policy_home"
-#   policy_type            = "PredictiveScaling"
-#   predictive_scaling_configuration {
-#     metric_specification {
-#       target_value = 50
-#       predefined_load_metric_specification {
-#         predefined_metric_type = "ASGTotalCPUUtilization"
-#       }
-#     }
-#   }
-# }
 resource "aws_autoscaling_policy" "asg_policy_home" {
-  name                   = "asg_policy_home"
   autoscaling_group_name = aws_autoscaling_group.asg_home.name
+  name                   = "asg_policy_home"
   policy_type            = "PredictiveScaling"
-
   predictive_scaling_configuration {
     metric_specification {
       target_value = 50
-
       predefined_load_metric_specification {
         predefined_metric_type = "ASGTotalCPUUtilization"
-      }
-
-      predefined_scaling_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
       }
     }
   }
 }
+# resource "aws_autoscaling_policy" "asg_policy_home" {
+#   name                   = "asg_policy_home"
+#   autoscaling_group_name = aws_autoscaling_group.asg_home.name
+#   policy_type            = "TargetTrackingScaling"
+
+#   target_tracking_configuration {
+#     predefined_metric_specification {
+#       predefined_metric_type = "ASGAverageCPUUtilization"
+#     }
+
+#     target_value = 50
+#   }
+# }
+
+
 
 
 resource "aws_autoscaling_group" "asg_laptop" {
@@ -104,39 +100,35 @@ resource "aws_autoscaling_group" "asg_laptop" {
   target_group_arns = [aws_lb_target_group.tg_laptop.arn]
 }
 
-# resource "aws_autoscaling_policy" "asg_policy_laptop" {
-#   autoscaling_group_name = aws_autoscaling_group.asg_laptop.name
-#   name                   = "asg_policy_laptop"
-#   policy_type            = "PredictiveScaling"
-#   predictive_scaling_configuration {
-#     metric_specification {
-#       target_value = 50
-#       predefined_load_metric_specification {
-#         predefined_metric_type = "ASGTotalCPUUtilization"
-#       }
-#     }
-#   }
-# }
-
 resource "aws_autoscaling_policy" "asg_policy_laptop" {
-  name                   = "asg_policy_laptop"
   autoscaling_group_name = aws_autoscaling_group.asg_laptop.name
+  name                   = "asg_policy_laptop"
   policy_type            = "PredictiveScaling"
-
   predictive_scaling_configuration {
     metric_specification {
       target_value = 50
-
       predefined_load_metric_specification {
         predefined_metric_type = "ASGTotalCPUUtilization"
-      }
-
-      predefined_scaling_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
       }
     }
   }
 }
+
+# resource "aws_autoscaling_policy" "asg_policy_laptop" {
+#   name                   = "asg_policy_laptop"
+#   autoscaling_group_name = aws_autoscaling_group.asg_laptop.name
+#   policy_type            = "TargetTrackingScaling"
+
+#   target_tracking_configuration {
+#     predefined_metric_specification {
+#       predefined_metric_type = "ASGAverageCPUUtilization"
+#     }
+
+#     target_value = 50
+#   }
+# }
+
+
 
 
 resource "aws_autoscaling_group" "asg_mobile" {
@@ -152,36 +144,31 @@ resource "aws_autoscaling_group" "asg_mobile" {
   target_group_arns = [aws_lb_target_group.tg_mobile.arn]
 }
 
-# resource "aws_autoscaling_policy" "asg_policy_mobile" {
-#   autoscaling_group_name = aws_autoscaling_group.asg_mobile.name
-#   name                   = "asg_policy_mobile"
-#   policy_type            = "PredictiveScaling"
-#   predictive_scaling_configuration {
-#     metric_specification {
-#       target_value = 50
-#       predefined_load_metric_specification {
-#         predefined_metric_type = "ASGTotalCPUUtilization"
-#       }
-#     }
-#   }
-# }
-
 resource "aws_autoscaling_policy" "asg_policy_mobile" {
-  name                   = "asg_policy_mobile"
   autoscaling_group_name = aws_autoscaling_group.asg_mobile.name
+  name                   = "asg_policy_mobile"
   policy_type            = "PredictiveScaling"
-
   predictive_scaling_configuration {
     metric_specification {
       target_value = 50
-
       predefined_load_metric_specification {
         predefined_metric_type = "ASGTotalCPUUtilization"
-      }
-
-      predefined_scaling_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
       }
     }
   }
 }
+
+# resource "aws_autoscaling_policy" "asg_policy_mobile" {
+#   name                   = "asg_policy_mobile"
+#   autoscaling_group_name = aws_autoscaling_group.asg_mobile.name
+#   policy_type            = "TargetTrackingScaling"
+
+#   target_tracking_configuration {
+#     predefined_metric_specification {
+#       predefined_metric_type = "ASGAverageCPUUtilization"
+#     }
+
+#     target_value = 50
+#   }
+# }
+
