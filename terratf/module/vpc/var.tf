@@ -1,9 +1,5 @@
 variable "image-id" {
-<<<<<<< HEAD
-    default = "ami-00f46ccd1cbfb363e"
-=======
     default = "ami-0fa91bc90632c73c9"
->>>>>>> 73c8c3c (new-update)
 }
 
 variable "instance_type" {
@@ -11,11 +7,7 @@ variable "instance_type" {
 }
 
 variable "my-key" {
-<<<<<<< HEAD
-    default = "ore-new"
-=======
     default = "Stockholmkey"
->>>>>>> 73c8c3c (new-update)
 }
 
 variable "pub-sub"{
