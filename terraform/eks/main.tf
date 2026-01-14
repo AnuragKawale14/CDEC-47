@@ -106,6 +106,7 @@ resource "aws_eks_node_group" "cbz_nodegroup" {
     max_size     = var.max_nodes
     min_size     = var.min_nodes
   }
+}
 
   instance_types = [var.node_instance_type]
 
