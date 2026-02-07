@@ -101,16 +101,15 @@ resource "aws_eks_node_group" "cbz_nodegroup" {
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = data.aws_subnets.eks_subnets.ids
 
+  instance_types = [var.node_instance_type]   
+
   scaling_config {
     desired_size = var.desired_nodes
     max_size     = var.max_nodes
     min_size     = var.min_nodes
   }
-}
 
-  instance_types = [var.node_instance_type]
-
-  depends_on = [
+  depends_on = [                              
     aws_iam_role_policy_attachment.worker_policy,
     aws_iam_role_policy_attachment.cni_policy,
     aws_iam_role_policy_attachment.ecr_policy
